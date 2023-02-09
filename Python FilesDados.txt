@@ -1,0 +1,5 @@
+
+Frequência:    <webbrowser.WindowsDefault object at 0x000000000419BFC8>
+Potência:    <webbrowser.WindowsDefault object at 0x000000000419BE08>
+Largura de banda:    <webbrowser.WindowsDefault object at 0x000000000419BFC8>
+
