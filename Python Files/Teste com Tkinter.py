@@ -19,8 +19,50 @@ txt1.place(x=10,y=10,width=150, height=30) #Colocando o objeto por coodernadas
 c = os.path.dirname(__file__)
 nomeArquivo=c+"Dados.txt"
 
+class Pack:
+    """Geometry manager Pack.
+
+    Base class to use the methods pack_* in every widget."""
+    def pack_configure(self, cnf={}, **kw):
+        """Pack a widget in the parent widget. Use as options:
+        after=widget - pack it after you have packed widget
+        anchor=NSEW (or subset) - position widget according to
+                                  given direction
+        before=widget - pack it before you will pack widget
+        expand=bool - expand widget if parent size grows
+        fill=NONE or X or Y or BOTH - fill widget if widget grows
+        in=master - use master to contain this widget
+        in_=master - see 'in' option description
+        ipadx=amount - add internal padding in x direction
+        ipady=amount - add internal padding in y direction
+        padx=amount - add padding in x direction
+        pady=amount - add padding in y direction
+        side=TOP or BOTTOM or LEFT or RIGHT -  where to add this widget.
+        """
+        self.tk.call(
+              ('pack', 'configure', self._w)
+              + self._options(cnf, kw))
+    pack = configure = config = pack_configure
+    def pack_forget(self):
+        """Unmap this widget and do not use it for the packing order."""
+        self.tk.call('pack', 'forget', self._w)
+    forget = pack_forget
+    def pack_info(self):
+        """Return information about the packing options
+        for this widget."""
+        d = _splitdict(self.tk, self.tk.call('pack', 'info', self._w))
+        if 'in' in d:
+            d['in'] = self.nametowidget(d['in'])
+        return d
+    info = pack_info
+    propagate = pack_propagate = Misc.pack_propagate
+    slaves = pack_slaves = Misc.pack_slaves
+
+
 def get(self):
      """Return the text."""
+
+
 
 def sair():
     quit()
@@ -49,8 +91,11 @@ txt2.pack(ipadx=10,ipady=10,padx=90,pady=90,side="top",fill=X,expand=True)
 Label(app, text="Digite a Frequência (em Hz):",background="#ff0",foreground= "#000", anchor= W).place(x=10,y=50,width=160,height=20)
 vf = Entry(app).place(x=10,y=75,width=110,height=20)
 
+
 Label(app, text="Digite a Potência (em Watts):",background="#ff0",foreground= "#000", anchor= W).place(x=10,y=100,width=160,height=20)
-vp = Entry(app).place(x=10,y=125,width=110,height=20)
+vp = Entry(app)
+vp.place(x=10,y=125,width=110,height=20)
+
 
 Label(app, text="Digite a Largura de Banda (em Hz):",background="#ff0",foreground= "#000", anchor= W).place(x=10,y=150,width=190,height=20)
 vlb= Entry(app).place(x=10,y=175,width=110,height=20)
@@ -58,7 +103,5 @@ vlb= Entry(app).place(x=10,y=175,width=110,height=20)
 
 Button(app, text= "Imprimir", command= impdados).place(x =10, y =200, width=110, height=20)
 Button(app, text= "Sair",  command= sair).place(x=10,y=235,width=110,height=20)
-
-
 
 app.mainloop()
