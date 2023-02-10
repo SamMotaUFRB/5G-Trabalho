@@ -1,6 +1,6 @@
 import dataclasses
 from tkinter import *
-import os
+import os 
 #from webbrowser import *
 #from requests import *
 
@@ -19,7 +19,8 @@ txt1.place(x=10,y=10,width=150, height=30) #Colocando o objeto por coodernadas
 c = os.path.dirname(__file__)
 nomeArquivo=c+"Dados.txt"
 
-
+def get(self):
+     """Return the text."""
 
 def sair():
     quit()
@@ -33,7 +34,7 @@ def impdados():
     arquivo.write("\n\n")
     arquivo.close()
     
-    print("Frequência:    %s" %getopt(vf))
+    print("Frequência:    %s" %get(vf))
     print("Potência:    %s" %get(vp))
     print("Largura de banda:    %s" %get(vlb))
    
