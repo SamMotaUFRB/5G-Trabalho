@@ -1,14 +1,21 @@
 import dataclasses
 from tkinter import *
-import os 
+import os
+from PIL import *
 #from webbrowser import *
 #from requests import *
 
 app = Tk()
 app.title("APP 5G")
+app.iconbitmap('F:/Users/SAMUEL/Documents/MeusProjetos/5G/Python Files/radio-tower.ico')
 app.geometry("500x500")
 app.configure(background="#118")
 
+"""
+tkimage = imagetk.PhotoImage(Image.open('F:/Users/SAMUEL/Documents/MeusProjetos/5G/Python Files/5G_background.jpeg'))
+tk.Label(app,image=tkimage).pack()
+my_label.pack()
+"""
 
 
 txt1 = Label(app, text = "Bem-vindo a interface", background="#ff0", foreground= "#000")
