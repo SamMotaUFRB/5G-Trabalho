@@ -2,9 +2,11 @@ import dataclasses
 from tkinter import *
 import os
 from PIL import *
+import googlemaps
 #from webbrowser import *
 #from requests import *
 
+#Configurações Visuais:
 app = Tk()
 app.title("APP 5G")
 app.iconbitmap('F:/Users/SAMUEL/Documents/MeusProjetos/5G/Python Files/radio-tower.ico')
@@ -16,13 +18,17 @@ tkimage = imagetk.PhotoImage(Image.open('F:/Users/SAMUEL/Documents/MeusProjetos/
 tk.Label(app,image=tkimage).pack()
 my_label.pack()
 """
+#API do Google Maps:
+googlemaps = googlemaps.Client(key= "AIzaSyDcz_OKnoD8j0n-a_3AyipLXOb6ZyqFI-0")
+geocode_result = googlemaps.geocode(lugar)
 
 
+#Título de apresentação
 txt1 = Label(app, text = "Bem-vindo a interface", background="#ff0", foreground= "#000")
 #txt1.grid(row= 5, column= 5) # Colocando o objeto por linhas e colunas.
 txt1.place(x=10,y=10,width=150, height=30) #Colocando o objeto por coodernadas
 
-
+#Arquivo Criado para escrita dos dados:
 c = os.path.dirname(__file__)
 nomeArquivo=c+"Dados.txt"
 
@@ -66,6 +72,8 @@ class Pack:
     slaves = pack_slaves = Misc.pack_slaves
 
 
+#Definiões:
+
 def get(self):
      """Return the text."""
 
@@ -86,6 +94,7 @@ def impdados():
     print("Frequência:    %s" %get(vf))
     print("Potência:    %s" %get(vp))
     print("Largura de banda:    %s" %get(vlb))
+    print("Sua Localização é: %s" %get(geocode_result))
    
 """
 vtxt="Opções"
@@ -94,6 +103,8 @@ vfg="#000"
 txt2=Label(app, text=vtxt, bg=vbg, fg=vfg)
 txt2.pack(ipadx=10,ipady=10,padx=90,pady=90,side="top",fill=X,expand=True)
 """
+
+#Caixas de Texto e entrada de dados:
 
 Label(app, text="Digite a Frequência (em Hz):",background="#ff0",foreground= "#000", anchor= W).place(x=10,y=50,width=160,height=20)
 vf = Entry(app).place(x=10,y=75,width=110,height=20)
@@ -108,7 +119,12 @@ Label(app, text="Digite a Largura de Banda (em Hz):",background="#ff0",foregroun
 vlb= Entry(app).place(x=10,y=175,width=110,height=20)
 
 
-Button(app, text= "Imprimir", command= impdados).place(x =10, y =200, width=110, height=20)
-Button(app, text= "Sair",  command= sair).place(x=10,y=235,width=110,height=20)
+Label(app, text="Digite sua localização: ",background="#ff0",foreground= "#000", anchor= W).place(x=10,y=200,width=120,height=20)
+lugar = Entry(app).place(x=10,y=225,width=110,height=20)
+
+#Botões:
+
+Button(app, text= "Imprimir", command= impdados).place(x =10, y =250, width=110, height=20)
+Button(app, text= "Sair",  command= sair).place(x=10,y=300,width=110,height=20)
 
 app.mainloop()
