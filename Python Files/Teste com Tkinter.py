@@ -18,10 +18,11 @@ tkimage = imagetk.PhotoImage(Image.open('F:/Users/SAMUEL/Documents/MeusProjetos/
 tk.Label(app,image=tkimage).pack()
 my_label.pack()
 """
+"""
 #API do Google Maps:
 googlemaps = googlemaps.Client(key= "AIzaSyDcz_OKnoD8j0n-a_3AyipLXOb6ZyqFI-0")
 geocode_result = googlemaps.geocode(lugar)
-
+"""
 
 #Título de apresentação
 txt1 = Label(app, text = "Bem-vindo a interface", background="#ff0", foreground= "#000")
@@ -83,18 +84,22 @@ def sair():
     quit()
 
 
-def impdados():
+def impdados(vf, vp, vlb, lugar, nomeArquivo):
+    print(f'O valor {lugar}')
+
     arquivo=open(nomeArquivo,"a")
-    arquivo.write("\nFrequência:    %s" %get(vf))
-    arquivo.write("\nPotência:    %s" %get(vp))
-    arquivo.write("\nLargura de banda:    %s" %get(vlb))
+    arquivo.write(f"\nFrequência: {vf.get()}")
+    arquivo.write( f"\nPotência:   {vp.get()}")
+    arquivo.write(f"\nLargura de banda:  {vlb.get()}")
+    arquivo.write(f"\n Lugar: {lugar.get()}")
     arquivo.write("\n\n")
     arquivo.close()
     
-    print("Frequência:    %s" %get(vf))
-    print("Potência:    %s" %get(vp))
-    print("Largura de banda:    %s" %get(vlb))
-    print("Sua Localização é: %s" %get(geocode_result))
+    print(f"\nFrequência: {vf.get()}")
+    print(f"Potência:   {vp.get()}" )
+    print(f"Largura de banda:   {vlb.get()}")
+    print(f"Lugar: {lugar.get()}" )
+   # print("Sua Localização é: %s" %geocode_result))
    
 """
 vtxt="Opções"
@@ -107,7 +112,8 @@ txt2.pack(ipadx=10,ipady=10,padx=90,pady=90,side="top",fill=X,expand=True)
 #Caixas de Texto e entrada de dados:
 
 Label(app, text="Digite a Frequência (em Hz):",background="#ff0",foreground= "#000", anchor= W).place(x=10,y=50,width=160,height=20)
-vf = Entry(app).place(x=10,y=75,width=110,height=20)
+vf = Entry(app)
+vf.place(x=10,y=75,width=110,height=20)
 
 
 Label(app, text="Digite a Potência (em Watts):",background="#ff0",foreground= "#000", anchor= W).place(x=10,y=100,width=160,height=20)
@@ -116,15 +122,16 @@ vp.place(x=10,y=125,width=110,height=20)
 
 
 Label(app, text="Digite a Largura de Banda (em Hz):",background="#ff0",foreground= "#000", anchor= W).place(x=10,y=150,width=190,height=20)
-vlb= Entry(app).place(x=10,y=175,width=110,height=20)
+vlb= Entry(app)
+vlb.place(x=10,y=175,width=110,height=20)
 
 
 Label(app, text="Digite sua localização: ",background="#ff0",foreground= "#000", anchor= W).place(x=10,y=200,width=120,height=20)
-lugar = Entry(app).place(x=10,y=225,width=110,height=20)
+lugar = Entry(app)
+lugar.place(x=10,y=225,width=110,height=20)
 
 #Botões:
-
-Button(app, text= "Imprimir", command= impdados).place(x =10, y =250, width=110, height=20)
+Button(app, text= "Imprimir", command=lambda:[impdados(vf, vp, vlb, lugar, nomeArquivo)]).place(x =10, y =250, width=110, height=20)
 Button(app, text= "Sair",  command= sair).place(x=10,y=300,width=110,height=20)
 
 app.mainloop()

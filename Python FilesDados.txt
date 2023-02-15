@@ -103,3 +103,79 @@ Frequência:    None
 Potência:    None
 Largura de banda:    None
 
+
+Frequência:    None
+Potência:    None
+Largura de banda:    None
+
+
+Frequência:    None
+Potência:    None
+Largura de banda:    None
+
+
+Frequência:    None
+Potência:    None
+Largura de banda:    None
+
+
+Frequência:    None
+Potência:    .!entry2
+Largura de banda:    None
+
+
+Frequência:    None
+Potência:    .!entry2
+Largura de banda:    None
+
+
+Frequência:    None
+Potência:    .!entry2
+Largura de banda:    None
+
+
+Frequência:    None
+Potência:    .!entry2
+Largura de banda:    None
+
+
+Frequência:    None
+Potência:    .!entry2
+Largura de banda:    None
+
+
+Frequência:    None
+Potência:    .!entry2
+Largura de banda:    None
+
+
+Frequência:    None
+Potência:    .!entry2
+Largura de banda:    None
+
+
+Frequência:    a
+Potência:    .!entry2
+Largura de banda:    .!entry3
+
+
+Frequência: a
+Potência:    .!entry2
+Largura de banda:    .!entry3
+
+
+Frequência: a
+Potência:    .!entry2
+Largura de banda:    .!entry3
+
+
+Frequência: 120
+Potência:   50
+Largura de banda:  40
+
+
+Frequência: 1
+Potência:   90
+Largura de banda:  12
+ Lugar: São Paulo
+
