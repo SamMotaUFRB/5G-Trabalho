@@ -179,3 +179,33 @@ Potência:   90
 Largura de banda:  12
  Lugar: São Paulo
 
+
+Frequência: 213
+Potência:   132
+Largura de banda:  231
+ Lugar: sao paulp
+
+
+Frequência: 213
+Potência:   132
+Largura de banda:  231
+ Lugar: sao paulp
+
+
+Frequência: 213
+Potência:   132
+Largura de banda:  231
+ Lugar: sao paulp
+
+
+Frequência: 213
+Potência:   132
+Largura de banda:  231
+ Lugar: sao paulp
+
+
+Frequência: 213
+Potência:   132
+Largura de banda:  231
+ Lugar: sao paulp
+

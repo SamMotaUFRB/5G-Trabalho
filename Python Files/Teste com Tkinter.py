@@ -14,11 +14,12 @@ app.geometry("500x500")
 app.configure(background="#118")
 
 """
-tkimage = imagetk.PhotoImage(Image.open('F:/Users/SAMUEL/Documents/MeusProjetos/5G/Python Files/5G_background.jpeg'))
-tk.Label(app,image=tkimage).pack()
+tkimage = imagetk.PhotoImage(Image.open('F:/Users/SAMUEL/Documents/MeusProjetos/5G/PythonFiles/5G_background.jpeg'))
+tk.Label(app,image=tkimage)
 my_label.pack()
+
 """
-"""
+""""
 #API do Google Maps:
 googlemaps = googlemaps.Client(key= "AIzaSyDcz_OKnoD8j0n-a_3AyipLXOb6ZyqFI-0")
 geocode_result = googlemaps.geocode(lugar)
