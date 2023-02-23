@@ -1,211 +1,37 @@
 
-Frequência:    <webbrowser.WindowsDefault object at 0x000000000419BFC8>
-Potência:    <webbrowser.WindowsDefault object at 0x000000000419BE08>
-Largura de banda:    <webbrowser.WindowsDefault object at 0x000000000419BFC8>
+Frequência: 1
+Potência:   1
+Largura de banda:  1
+ Lugar: São paulo
 
 
-Frequência:    None
-Potência:    None
-Largura de banda:    None
-
-
-Frequência:    None
-Potência:    None
-Largura de banda:    None
-
-
-Frequência:    None
-Potência:    None
-Largura de banda:    None
-
-
-Frequência:    None
-Potência:    None
-Largura de banda:    None
-
-
-Frequência:    None
-Potência:    None
-Largura de banda:    None
-
-
-Frequência:    None
-Potência:    None
-Largura de banda:    None
-
-
-Frequência:    None
-Potência:    None
-Largura de banda:    None
-
-
-Frequência:    None
-Potência:    None
-Largura de banda:    None
-
-
-Frequência:    None
-Potência:    None
-Largura de banda:    None
-
-
-Frequência:    None
-Potência:    None
-Largura de banda:    None
-
-
-Frequência:    None
-Potência:    None
-Largura de banda:    None
-
-
-Frequência:    None
-Potência:    None
-Largura de banda:    None
-
-
-Frequência:    None
-Potência:    None
-Largura de banda:    None
-
-
-Frequência:    None
-Potência:    None
-Largura de banda:    None
-
-
-Frequência:    None
-Potência:    None
-Largura de banda:    None
-
-
-Frequência:    None
-Potência:    None
-Largura de banda:    None
-
-
-Frequência:    None
-Potência:    None
-Largura de banda:    None
-
-
-Frequência:    None
-Potência:    None
-Largura de banda:    None
-
-
-Frequência:    None
-Potência:    None
-Largura de banda:    None
-
-
-Frequência:    None
-Potência:    None
-Largura de banda:    None
-
-
-Frequência:    None
-Potência:    None
-Largura de banda:    None
-
-
-Frequência:    None
-Potência:    None
-Largura de banda:    None
-
-
-Frequência:    None
-Potência:    None
-Largura de banda:    None
-
-
-Frequência:    None
-Potência:    .!entry2
-Largura de banda:    None
-
-
-Frequência:    None
-Potência:    .!entry2
-Largura de banda:    None
-
-
-Frequência:    None
-Potência:    .!entry2
-Largura de banda:    None
-
-
-Frequência:    None
-Potência:    .!entry2
-Largura de banda:    None
-
-
-Frequência:    None
-Potência:    .!entry2
-Largura de banda:    None
-
-
-Frequência:    None
-Potência:    .!entry2
-Largura de banda:    None
-
-
-Frequência:    None
-Potência:    .!entry2
-Largura de banda:    None
-
-
-Frequência:    a
-Potência:    .!entry2
-Largura de banda:    .!entry3
+Frequência: 11
+Potência:   11
+Largura de banda:  11
+ Lugar: brasil
 
 
 Frequência: a
-Potência:    .!entry2
-Largura de banda:    .!entry3
-
-
-Frequência: a
-Potência:    .!entry2
-Largura de banda:    .!entry3
-
-
-Frequência: 120
-Potência:   50
-Largura de banda:  40
+Potência:   a
+Largura de banda:  a
+ Lugar: rio de janeiro
 
 
 Frequência: 1
-Potência:   90
-Largura de banda:  12
- Lugar: São Paulo
+Potência:   1
+Largura de banda:  1
+ Lugar: 1
 
 
-Frequência: 213
-Potência:   132
-Largura de banda:  231
- Lugar: sao paulp
+Frequência: 1
+Potência:   1
+Largura de banda:  1
+ Lugar: Sao paulo
 
 
-Frequência: 213
-Potência:   132
-Largura de banda:  231
- Lugar: sao paulp
-
-
-Frequência: 213
-Potência:   132
-Largura de banda:  231
- Lugar: sao paulp
-
-
-Frequência: 213
-Potência:   132
-Largura de banda:  231
- Lugar: sao paulp
-
-
-Frequência: 213
-Potência:   132
-Largura de banda:  231
- Lugar: sao paulp
-
+Frequência: 1
+Potência:   1
+Largura de banda:  1
+Frequência: 1
+Potência:   1
+Largura de banda:  1

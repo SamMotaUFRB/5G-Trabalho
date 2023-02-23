@@ -1,9 +1,8 @@
 import dataclasses
 from tkinter import *
 import os
-from PIL import *
+#from PIL import *
 import googlemaps
-import requests
 #from webbrowser import *
 #from requests import *
 
@@ -13,16 +12,10 @@ app.title("APP 5G")
 app.iconbitmap('F:/Users/SAMUEL/Documents/MeusProjetos/5G/Python Files/radio-tower.ico')
 app.geometry("500x500")
 app.configure(background="#118")
-              
-# API do Google Maps:
-api_key = "AIzaSyDcz_OKnoD8j0n-a_3AyipLXOb6ZyqFI-0"
-
-# url variable store url
-url = "https://maps.googleapis.com/maps/api/staticmap?"
 
 """
-my_img = imageTk.PhotoImage(Image.open('F:/Users/SAMUEL/Documents/MeusProjetos/5G/Python Files/II.jpeg'))
-my_label = Label(image = my_img)
+tkimage = imagetk.PhotoImage(Image.open('F:/Users/SAMUEL/Documents/MeusProjetos/5G/PythonFiles/5G_background.jpeg'))
+tk.Label(app,image=tkimage)
 my_label.pack()
 
 """
@@ -86,13 +79,15 @@ class Pack:
 def get(self):
      """Return the text."""
 
+
+
 def sair():
     quit()
 
 
 def impdados(vf, vp, vlb, lugar, nomeArquivo):
     print(f'O valor {lugar}')
-    """
+
     arquivo=open(nomeArquivo,"a")
     arquivo.write(f"\nFrequência: {vf.get()}")
     arquivo.write( f"\nPotência:   {vp.get()}")
@@ -100,15 +95,12 @@ def impdados(vf, vp, vlb, lugar, nomeArquivo):
     arquivo.write(f"\n Lugar: {lugar.get()}")
     arquivo.write("\n\n")
     arquivo.close()
-    """
+    
     print(f"\nFrequência: {vf.get()}")
     print(f"Potência:   {vp.get()}" )
     print(f"Largura de banda:   {vlb.get()}")
     print(f"Lugar: {lugar.get()}" )
    # print("Sua Localização é: %s" %geocode_result))
-   
-#def bt_onclick():
-    
    
 """
 vtxt="Opções"
@@ -139,48 +131,8 @@ Label(app, text="Digite sua localização: ",background="#ff0",foreground= "#000
 lugar = Entry(app)
 lugar.place(x=10,y=225,width=110,height=20)
 
-
-
 #Botões:
-bt = Button(app, text= "OK", command=lambda:[impdados(vf, vp, vlb, lugar, nomeArquivo)])
-bt.place(x =10, y =250, width=110, height=20)
+Button(app, text= "Imprimir", command=lambda:[impdados(vf, vp, vlb, lugar, nomeArquivo)]).place(x =10, y =250, width=110, height=20)
 Button(app, text= "Sair",  command= sair).place(x=10,y=300,width=110,height=20)
 
-
-
-# zoom defines the zoom
-# level of the map
-
-center = "New york"
-zoom = 10
-
-
-# get method of requests module
-# return response object
-r = requests.get(url + "&size=400x400&center="+center+
-                        "&zoom="+str(zoom)+"&maptype=satellite&key="+api_key)
-print(url + "&size=400x400&center="+center+
-                        "&zoom="+str(zoom)+"&maptype=satellite&key="+api_key)
-#https://maps.googleapis.com/maps/api/staticmap?&size=400x400&center=Tokyo&zoom=10&maptype=satellite&key=AIzaSyDcz_OKnoD8j0n-a_3AyipLXOb6ZyqFI-0
-# wb mode is stand for write binary mode
-f = open('F:/Users/SAMUEL/Documents/MeusProjetos/5G/Python Files/II.jpeg', 'wb')
-  
-# r.content gives content,
-# in this case gives image
-f.write(r.content)
-  
-# close method of file object
-# save and close the file
-f.close()
-
-
 app.mainloop()
-
-# center defines the center of the map,
-# equidistant from all edges of the map. 
-
-
-
-
-
-
