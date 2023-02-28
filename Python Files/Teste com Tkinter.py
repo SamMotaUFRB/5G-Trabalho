@@ -124,21 +124,42 @@ def impdados(vf, vp, vlb, center, nomeArquivo):
     print(f"Largura de banda:   {vlb.get()}")
     print(f"Lugar: {lugar.get()}" )
     print(lugar.get())
- 
+   
+
     
    # print("Sua Localização é: %s" %geocode_result))
    
 #def bt_onclick():
-   
-    
-   
+      
 """
 vtxt="Opções"
 vbg="#ff0"
 vfg="#000"
 txt2=Label(app, text=vtxt, bg=vbg, fg=vfg)
 txt2.pack(ipadx=10,ipady=10,padx=90,pady=90,side="top",fill=X,expand=True)
+
+
 """
+
+def semComando():
+    print(" ")
+    
+
+#Criando Barra de Menus.
+
+barrademenus=Menu(app)
+menuprincipal= Menu(barrademenus, tearoff  = 0)
+menuprincipal.add_command(label = "Novo", command = semComando)
+menuprincipal.add_command(label = "Salvar dados", command = semComando)
+menuprincipal.add_separator()
+menuprincipal.add_command(label  = "Fechar",command=app.quit)
+barrademenus.add_cascade(label = "Início", menu= menuprincipal)
+
+menusobre = Menu(barrademenus, tearoff = 0)
+menusobre.add_command(label = "Sobre", command = semComando)
+barrademenus.add_cascade(label = "Informações", menu= menusobre)
+app.config(menu=barrademenus)
+
 
 #Caixas de Texto e entrada de dados:
 
@@ -198,11 +219,6 @@ f.write(r.content)
 # close method of file object
 # save and close the file
 f.close()
-
-
-print(lugar.get())
-print(lugar.get())
-print(lugar.get())
 
 
 app.mainloop()
