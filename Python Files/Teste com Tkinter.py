@@ -1,5 +1,6 @@
 import dataclasses
 from tkinter import *
+from datetime import datetime
 import os
 from PIL import *
 import googlemaps
@@ -21,7 +22,10 @@ imgLogo = PhotoImage(file=pastaApp+"\\5G_background.gif")
 l_logo=Label(app,image=imgLogo)
 l_logo.place(x=0,y=0)
 
-              
+#Horário:
+data = datetime.now()
+data = str(data)
+
 # API do Google Maps:
 api_key = "AIzaSyDcz_OKnoD8j0n-a_3AyipLXOb6ZyqFI-0"
 
@@ -54,6 +58,8 @@ geocode_result = googlemaps.geocode(lugar)
 txt1 = Label(app, text = "Bem-vindo a interface", background="#ff0", foreground= "#000")
 #txt1.grid(row= 5, column= 5) # Colocando o objeto por linhas e colunas.
 txt1.place(x=10,y=10,width=150, height=30) #Colocando o objeto por coodernadas
+#txt2 = Label(app, text = data, background="#ff0", foreground= "#000" )
+#txt2.place(x=160,y=10,width=150, height=30)
 
 #Arquivo Criado para escrita dos dados:
 c = os.path.dirname(__file__)
@@ -110,15 +116,7 @@ def sair():
 
 def impdados(vf, vp, vlb, center, nomeArquivo):
     #print(f'O valor {lugar}')
-    """
-    arquivo=open(nomeArquivo,"a")
-    arquivo.write(f"\nFrequência: {vf.get()}")
-    arquivo.write( f"\nPotência:   {vp.get()}")
-    arquivo.write(f"\nLargura de banda:  {vlb.get()}")
-    arquivo.write(f"\n Lugar: {lugar.get()}")
-    arquivo.write("\n\n")
-    arquivo.close()
-    """
+    print("Horário: ", data)
     print(f"\nFrequência: {vf.get()}")
     print(f"Potência:   {vp.get()}" )
     print(f"Largura de banda:   {vlb.get()}")
@@ -141,6 +139,17 @@ txt2.pack(ipadx=10,ipady=10,padx=90,pady=90,side="top",fill=X,expand=True)
 
 """
 
+def salvardados():
+    arquivo=open(nomeArquivo,"a")
+    arquivo.write(data)
+    arquivo.write(f"\nFrequência: {vf.get()}")
+    arquivo.write( f"\nPotência:   {vp.get()}")
+    arquivo.write(f"\nLargura de banda:  {vlb.get()}")
+    arquivo.write(f"\n Lugar: {lugar.get()}")
+    arquivo.write("\n\n")
+    arquivo.close()
+    
+
 def semComando():
     print(" ")
     
@@ -150,7 +159,7 @@ def semComando():
 barrademenus=Menu(app)
 menuprincipal= Menu(barrademenus, tearoff  = 0)
 menuprincipal.add_command(label = "Novo", command = semComando)
-menuprincipal.add_command(label = "Salvar dados", command = semComando)
+menuprincipal.add_command(label = "Salvar dados", command = salvardados)
 menuprincipal.add_separator()
 menuprincipal.add_command(label  = "Fechar",command=app.quit)
 barrademenus.add_cascade(label = "Início", menu= menuprincipal)
