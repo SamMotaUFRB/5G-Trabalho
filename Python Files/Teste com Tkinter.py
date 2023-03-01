@@ -5,6 +5,7 @@ import os
 from PIL import *
 import googlemaps
 import requests
+from math import pi
 #from webbrowser import *
 #from requests import *
 
@@ -64,6 +65,18 @@ txt1.place(x=10,y=10,width=150, height=30) #Colocando o objeto por coodernadas
 #Arquivo Criado para escrita dos dados:
 c = os.path.dirname(__file__)
 nomeArquivo=c+"Dados.txt"
+"""
+
+#Calculo do modelo do espaço livre.
+
+
+float = pr
+float = pt, gt, gr, lam, d
+
+
+
+pr = (pt*gt*gr*lam*lam)/((4*pi)**2)*(d*d)
+"""
 
 class Pack:
     """Geometry manager Pack.
@@ -114,15 +127,22 @@ def sair():
     quit()
 
 
-def impdados(vf, vp, vlb, center, nomeArquivo):
+def impdados(pr,lam, pt, gt, gr,d ,lugar, nomeArquivo):
     #print(f'O valor {lugar}')
     print("Horário: ", data)
-    print(f"\nFrequência: {vf.get()}")
-    print(f"Potência:   {vp.get()}" )
-    print(f"Largura de banda:   {vlb.get()}")
+    print(f"\nComprimento de Onda: {lam.get()}")
+    print(f"Potência da antena:   {pt.get()}" )
+    print(f"Ganho da antena de Transmissão:   {gt.get()}")
+    print(f"Ganho da antena de Recepção:   {gr.get()}")
     print(f"Lugar: {lugar.get()}" )
     print(lugar.get())
-   
+    """
+    float = pr, pt, gt, gr, lam, d
+    pr = (pt.get()*gt.get()*gr.get()*lam.get()**2)/((4*pi)**2)*(d.get()**2)
+    print(pr)
+
+    """
+   # NameError: name 'pr' is not defined
 
     
    # print("Sua Localização é: %s" %geocode_result))
@@ -172,31 +192,39 @@ app.config(menu=barrademenus)
 
 #Caixas de Texto e entrada de dados:
 
-Label(app, text="Digite a Frequência (em Hz):",background="#ff0",foreground= "#000", anchor= W).place(x=10,y=50,width=160,height=20)
-vf = Entry(app)
-vf.place(x=10,y=75,width=110,height=20)
+Label(app, text="Digite a Comprimento de onda (em m):",background="#ff0",foreground= "#000", anchor= W).place(x=10,y=50,width=215,height=20)
+lam = Entry(app)
+lam.place(x=230,y=50,width=110,height=20)
 
 
-Label(app, text="Digite a Potência (em Watts):",background="#ff0",foreground= "#000", anchor= W).place(x=10,y=100,width=160,height=20)
-vp = Entry(app)
-vp.place(x=10,y=125,width=110,height=20)
+Label(app, text="Digite a Potência da antena (em Watts):",background="#ff0",foreground= "#000", anchor= W).place(x=10,y=80,width=215,height=20)
+pt = Entry(app)
+pt.place(x=230,y=80,width=110,height=20)
 
 
-Label(app, text="Digite a Largura de Banda (em Hz):",background="#ff0",foreground= "#000", anchor= W).place(x=10,y=150,width=190,height=20)
-vlb= Entry(app)
-vlb.place(x=10,y=175,width=110,height=20)
+Label(app, text="Digite o Ganho da antena de Transmissão (em dBi):",background="#ff0",foreground= "#000", anchor= W).place(x=10,y=110,width=275,height=20)
+gt= Entry(app)
+gt.place(x=290,y=110,width=110,height=20)
+
+Label(app, text="Digite o Ganho da antena de Recepção (em dBi):",background="#ff0",foreground= "#000", anchor= W).place(x=10,y=140,width=260,height=20)
+gr= Entry(app)
+gr.place(x=275,y=140,width=110,height=20)
+
+
+Label(app, text="Digite a distância a ser alcançada: ",background="#ff0",foreground= "#000", anchor= W).place(x=10,y=170,width=180,height=20)
+d= Entry(app)
+d.place(x=195,y=170,width=110,height=20)
 
 
 Label(app, text="Digite sua localização: ",background="#ff0",foreground= "#000", anchor= W).place(x=10,y=200,width=120,height=20)
 lugar = Entry(app)
-lugar.place(x=10,y=225,width=110,height=20)
-
+lugar.place(x=135,y=200,width=110,height=20)
 
 
 #Botões:
-bt = Button(app, text= "OK", command=lambda:[impdados(vf, vp, vlb, lugar, nomeArquivo)])
-bt.place(x =10, y =250, width=110, height=20)
-Button(app, text= "Sair",  command= sair).place(x=10,y=300,width=110,height=20)
+bt = Button(app, text= "OK", command=lambda:[impdados(pr,lam, pt, gt, gr ,d,lugar, nomeArquivo)])
+bt.place(x =10, y =230, width=110, height=20)
+Button(app, text= "Sair",  command= sair).place(x=130,y=230,width=110,height=20)
 
 
 #Exibição do Mapa:
@@ -205,11 +233,12 @@ imgLogo1 = PhotoImage(file=pastaApp+"\\II.gif")
 l_logo1=Label(app,image=imgLogo1)
 l_logo1.place(x=10,y=330)
 
+
 # zoom defines the zoom
 # level of the map
 
 center ="New york"  #Quero que o valor digitado em center = entry( ), vá para uma variavel x e que center é iguala a x.
-zoom = 10
+zoom = 12
 
 # get method of requests module
 # return response object
@@ -228,6 +257,9 @@ f.write(r.content)
 # close method of file object
 # save and close the file
 f.close()
+
+
+
 
 
 app.mainloop()
