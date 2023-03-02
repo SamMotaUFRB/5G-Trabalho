@@ -16,6 +16,16 @@ app.title("APP 5G")
 app.iconbitmap('F:/Users/SAMUEL/Documents/MeusProjetos/5G/Python Files/radio-tower.ico')
 app.geometry("600x600")
 app.configure(background="#118")
+lam2 =0
+pt2=0
+pr2=0
+gt2=0
+gr2=0
+d2=0
+center2=0
+lugar2=0
+
+              
               
 #Background do app:
 pastaApp=os.path.dirname(__file__)
@@ -32,6 +42,13 @@ api_key = "AIzaSyDcz_OKnoD8j0n-a_3AyipLXOb6ZyqFI-0"
 
 # url variable store url
 url = "https://maps.googleapis.com/maps/api/staticmap?"
+
+# zoom defines the zoom
+# level of the map
+
+#center ="Arena Fonte Nova, Salvador,Bahia"  #Quero que o valor digitado em center = entry( ), vá para uma variavel x e que center é iguala a x.
+
+
 
 """
 class Tela:
@@ -75,7 +92,7 @@ float = pt, gt, gr, lam, d
 
 
 
-pr = (pt*gt*gr*lam*lam)/((4*pi)**2)*(d*d)
+pr = (pt*gt*gr*lam**2)/(((4*pi**2))*(d**2))
 """
 
 class Pack:
@@ -116,7 +133,8 @@ class Pack:
     info = pack_info
     propagate = pack_propagate = Misc.pack_propagate
     slaves = pack_slaves = Misc.pack_slaves
-    
+   
+
 
 #Definiões:
 
@@ -127,21 +145,39 @@ def sair():
     quit()
 
 
-def impdados(pr,lam, pt, gt, gr,d ,lugar, nomeArquivo):
-    #print(f'O valor {lugar}')
-    print("Horário: ", data)
-    print(f"\nComprimento de Onda: {lam.get()}")
-    print(f"Potência da antena:   {pt.get()}" )
-    print(f"Ganho da antena de Transmissão:   {gt.get()}")
-    print(f"Ganho da antena de Recepção:   {gr.get()}")
-    print(f"Lugar: {lugar.get()}" )
-    print(lugar.get())
-    """
-    float = pr, pt, gt, gr, lam, d
-    pr = (pt.get()*gt.get()*gr.get()*lam.get()**2)/((4*pi)**2)*(d.get()**2)
-    print(pr)
+def impdados(lam, pt, gt, gr,d ,lugar, nomeArquivo):
+ #   print(f'O valor {lugar}')
+ #   print("Horário: ", data)
+ #   print(f"\nComprimento de Onda: {lam.get()}")
+ #   print(f"Potência da antena:   {pt.get()}" )
+ #   print(f"Ganho da antena de Transmissão:   {gt.get()}")
+ #   print(f"Ganho da antena de Recepção:   {gr.get()}")
+ #   print(f"Lugar: {lugar.get()}" )
+ #   print(lugar.get())
+    
+    lam2 = int(lam.get())
+    pt2 = int(pt.get())
+    gt2 = int(gt.get())
+    gr2 = int(gr.get())
+    d2 = int(d.get())
+    lugar2 = lugar.get()
+    print(f"O valor de LUGAR2 é: ",lugar2)
+    #pr=lam2+lam2
+    #pr=int(lam2) + int(lam2)
+    pr = (pt2*gt2*gr2*lam2**2)/(((4*pi**2))*(d2**2))
+    print("Potência recebida: ",pr,"W")
+    
+    
 
-    """
+"""  
+def on_submit(lam, pt, gt, gr,d):
+        #To be run when the user submits the form
+    lam = lam_var.get()
+    pt = pt_var.get()
+    gt = gt_var.get()
+    gr = gr_var.get()
+"""   
+    
    # NameError: name 'pr' is not defined
 
     
@@ -222,23 +258,21 @@ lugar.place(x=135,y=200,width=110,height=20)
 
 
 #Botões:
-bt = Button(app, text= "OK", command=lambda:[impdados(pr,lam, pt, gt, gr ,d,lugar, nomeArquivo)])
+bt = Button(app, text= "OK", command=lambda:[impdados(lam, pt, gt, gr ,d,lugar, nomeArquivo)])
 bt.place(x =10, y =230, width=110, height=20)
 Button(app, text= "Sair",  command= sair).place(x=130,y=230,width=110,height=20)
 
+#print("Valor de x",x)
 
 #Exibição do Mapa:
 pastaApp=os.path.dirname(__file__)
 imgLogo1 = PhotoImage(file=pastaApp+"\\II.gif")
 l_logo1=Label(app,image=imgLogo1)
-l_logo1.place(x=10,y=330)
+l_logo1.place(x=10,y=320)
 
 
-# zoom defines the zoom
-# level of the map
-
-center ="New york"  #Quero que o valor digitado em center = entry( ), vá para uma variavel x e que center é iguala a x.
-zoom = 12
+center = 'Brasil'    #str(lugar2)
+zoom = 3
 
 # get method of requests module
 # return response object
@@ -257,8 +291,6 @@ f.write(r.content)
 # close method of file object
 # save and close the file
 f.close()
-
-
 
 
 
