@@ -22,6 +22,9 @@ pr2=0
 gt2=0
 gr2=0
 d2=0
+pr2=0
+pr=0
+a= 0
 center2=0
 lugar2=0
 
@@ -82,18 +85,7 @@ txt1.place(x=10,y=10,width=150, height=30) #Colocando o objeto por coodernadas
 #Arquivo Criado para escrita dos dados:
 c = os.path.dirname(__file__)
 nomeArquivo=c+"Dados.txt"
-"""
 
-#Calculo do modelo do espaço livre.
-
-
-float = pr
-float = pt, gt, gr, lam, d
-
-
-
-pr = (pt*gt*gr*lam**2)/(((4*pi**2))*(d**2))
-"""
 
 class Pack:
     """Geometry manager Pack.
@@ -146,26 +138,27 @@ def sair():
 
 
 def impdados(lam, pt, gt, gr,d ,lugar, nomeArquivo):
- #   print(f'O valor {lugar}')
- #   print("Horário: ", data)
- #   print(f"\nComprimento de Onda: {lam.get()}")
- #   print(f"Potência da antena:   {pt.get()}" )
- #   print(f"Ganho da antena de Transmissão:   {gt.get()}")
- #   print(f"Ganho da antena de Recepção:   {gr.get()}")
- #   print(f"Lugar: {lugar.get()}" )
- #   print(lugar.get())
+    print(f'O valor {lugar}')
+    print("Horário: ", data)
+    print(f"\nComprimento de Onda: {lam.get()}")
+    print(f"Potência da antena:   {pt.get()}" )
+    print(f"Ganho da antena de Transmissão:   {gt.get()}")
+    print(f"Ganho da antena de Recepção:   {gr.get()}")
+    print(f"Lugar: {lugar.get()}" )
+    #print(lugar.get())
     
-    lam2 = int(lam.get())
-    pt2 = int(pt.get())
-    gt2 = int(gt.get())
-    gr2 = int(gr.get())
-    d2 = int(d.get())
+    lam2 = float(lam.get())
+    pt2 = float(pt.get())
+    gt2 = float(gt.get())
+    gr2 = float(gr.get())
+    d2 = float(d.get())
     lugar2 = lugar.get()
-    print(f"O valor de LUGAR2 é: ",lugar2)
-    #pr=lam2+lam2
-    #pr=int(lam2) + int(lam2)
+    #print(f"O valor de LUGAR2 é: ",lugar2)
     pr = (pt2*gt2*gr2*lam2**2)/(((4*pi**2))*(d2**2))
+    
     print("Potência recebida: ",pr,"W")
+    a = Label(app, text =  "Potência recebida(W): ",background="#ff0",foreground= "#000", anchor= W).place(x=10,y=230,width=125,height=20)
+    b = Label(app, text = pr,background="white",foreground= "#000", anchor= W).place(x=140,y=230,width=110,height=20)
     
     
 
@@ -257,10 +250,12 @@ lugar = Entry(app)
 lugar.place(x=135,y=200,width=110,height=20)
 
 
+
+
 #Botões:
 bt = Button(app, text= "OK", command=lambda:[impdados(lam, pt, gt, gr ,d,lugar, nomeArquivo)])
-bt.place(x =10, y =230, width=110, height=20)
-Button(app, text= "Sair",  command= sair).place(x=130,y=230,width=110,height=20)
+bt.place(x =10, y =260, width=110, height=20)
+Button(app, text= "Sair",  command= sair).place(x=130,y=260,width=110,height=20)
 
 #print("Valor de x",x)
 
