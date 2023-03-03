@@ -18,6 +18,6 @@ print("Potência recebida: ",pr,"W")
 
 #Atenuação no espaço livre (admensional)
 l = ((4*pi)**2*d**2)/(lam**2)
-
+#Quando em Log(dB)
 lb= log10(l)
 print(lb)

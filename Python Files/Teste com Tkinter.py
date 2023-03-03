@@ -5,7 +5,7 @@ import os
 from PIL import *
 import googlemaps
 import requests
-from math import pi
+from math import pi, log10
 #from webbrowser import *
 #from requests import *
 
@@ -138,12 +138,13 @@ def sair():
 
 
 def impdados(lam, pt, gt, gr,d ,lugar, nomeArquivo):
-    print(f'O valor {lugar}')
+    #print(f'O valor {lugar}')
     print("Horário: ", data)
-    print(f"\nComprimento de Onda: {lam.get()}")
-    print(f"Potência da antena:   {pt.get()}" )
-    print(f"Ganho da antena de Transmissão:   {gt.get()}")
-    print(f"Ganho da antena de Recepção:   {gr.get()}")
+    print(f"\nComprimento de Onda: {lam.get()} m")
+    print(f"Potência da antena:   {pt.get()} W" )
+    print(f"Ganho da antena de Transmissão:   {gt.get()} dBi")
+    print(f"Ganho da antena de Recepção:   {gr.get()} dBi")
+    print(f"Distância a ser alcançada:   {d.get()} m")
     print(f"Lugar: {lugar.get()}" )
     #print(lugar.get())
     
@@ -155,10 +156,17 @@ def impdados(lam, pt, gt, gr,d ,lugar, nomeArquivo):
     lugar2 = lugar.get()
     #print(f"O valor de LUGAR2 é: ",lugar2)
     pr = (pt2*gt2*gr2*lam2**2)/(((4*pi**2))*(d2**2))
+    #Atenuação no espaço livre (admensional)
+    l = ((4*pi)**2*d2**2)/(lam2**2)
+    #Quando em Log(dB)
+    lb = log10(l)
     
     print("Potência recebida: ",pr,"W")
-    a = Label(app, text =  "Potência recebida(W): ",background="#ff0",foreground= "#000", anchor= W).place(x=10,y=230,width=125,height=20)
+    print("Atenuação no espaço livre (dB): ", lb)
+    a = Label(app, text ="Potência recebida(W): ",background="#ff0",foreground= "#000", anchor= W).place(x=10,y=230,width=125,height=20)
     b = Label(app, text = pr,background="white",foreground= "#000", anchor= W).place(x=140,y=230,width=110,height=20)
+    c = Label(app, text ="Atenuação no espaço livre (dB): ",background="#ff0",foreground= "#000", anchor= W).place(x=10,y=260,width=170,height=20)
+    d = Label(app, text = lb,background="white",foreground= "#000", anchor= W).place(x=185,y=260,width=110,height=20)
     
     
 
@@ -254,8 +262,8 @@ lugar.place(x=135,y=200,width=110,height=20)
 
 #Botões:
 bt = Button(app, text= "OK", command=lambda:[impdados(lam, pt, gt, gr ,d,lugar, nomeArquivo)])
-bt.place(x =10, y =260, width=110, height=20)
-Button(app, text= "Sair",  command= sair).place(x=130,y=260,width=110,height=20)
+bt.place(x =10, y =290, width=110, height=20)
+Button(app, text= "Sair",  command= sair).place(x=130,y=290,width=110,height=20)
 
 #print("Valor de x",x)
 
