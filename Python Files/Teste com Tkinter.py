@@ -29,10 +29,13 @@ ppr2 = 0
 da2= 0
 do2= 0
 center2=0
-lugar2=0
+lugar2= 0
 beta = 2
 
-              
+#center2 = 'Arena Fonte Nova'    #str(lugar2)
+#center2 = str(lugar2)
+#print(center2)
+        
               
 #Background do app:
 pastaApp=os.path.dirname(__file__)
@@ -45,10 +48,10 @@ data = datetime.now()
 data = str(data)
 
 # API do Google Maps:
-api_key = "AIzaSyDcz_OKnoD8j0n-a_3AyipLXOb6ZyqFI-0"
+#api_key = "AIzaSyDcz_OKnoD8j0n-a_3AyipLXOb6ZyqFI-0"
 
 # url variable store url
-url = "https://maps.googleapis.com/maps/api/staticmap?"
+#url = "https://maps.googleapis.com/maps/api/staticmap?"
 
 # zoom defines the zoom
 # level of the map
@@ -93,47 +96,6 @@ c = os.path.dirname(__file__)
 nomeArquivo=c+"Dados.txt"
 
 
-class Pack:
-    """Geometry manager Pack.
-
-    Base class to use the methods pack_* in every widget."""
-    def pack_configure(self, cnf={}, **kw):
-        """Pack a widget in the parent widget. Use as options:
-        after=widget - pack it after you have packed widget
-        anchor=NSEW (or subset) - position widget according to
-                                  given direction
-        before=widget - pack it before you will pack widget
-        expand=bool - expand widget if parent size grows
-        fill=NONE or X or Y or BOTH - fill widget if widget grows
-        in=master - use master to contain this widget
-        in_=master - see 'in' option description
-        ipadx=amount - add internal padding in x direction
-        ipady=amount - add internal padding in y direction
-        padx=amount - add padding in x direction
-        pady=amount - add padding in y direction
-        side=TOP or BOTTOM or LEFT or RIGHT -  where to add this widget.
-        """
-        self.tk.call(
-              ('pack', 'configure', self._w)
-              + self._options(cnf, kw))
-    pack = configure = config = pack_configure
-    def pack_forget(self):
-        """Unmap this widget and do not use it for the packing order."""
-        self.tk.call('pack', 'forget', self._w)
-    forget = pack_forget
-    def pack_info(self):
-        """Return information about the packing options
-        for this widget."""
-        d = _splitdict(self.tk, self.tk.call('pack', 'info', self._w))
-        if 'in' in d:
-            d['in'] = self.nametowidget(d['in'])
-        return d
-    info = pack_info
-    propagate = pack_propagate = Misc.pack_propagate
-    slaves = pack_slaves = Misc.pack_slaves
-   
-
-
 #Definiões:
 
 def get(self):
@@ -154,12 +116,14 @@ def impdados(lam, pt, gt, gr,d ,lugar, nomeArquivo):
     print(f"Lugar: {lugar.get()}" )
     #print(lugar.get())
     
+    
     lam2 = float(lam.get())
     pt2 = float(pt.get())
     gt2 = float(gt.get())
     gr2 = float(gr.get())
     d2 = float(d.get())
     lugar2 = lugar.get()
+    center2 = str(lugar.get())
     #print(f"O valor de LUGAR2 é: ",lugar2)
     pr = (pt2*gt2*gr2*lam2**2)/(((4*pi**2))*(d2**2))
     #Atenuação no espaço livre (admensional)
@@ -167,12 +131,34 @@ def impdados(lam, pt, gt, gr,d ,lugar, nomeArquivo):
     #Quando em Log(dB)
     lb = log10(l)
     
+    
+    
     print("Potência recebida: ",pr,"W")
     print("Atenuação no espaço livre (dB): ", lb)
     a = Label(app, text ="Potência recebida(W): ",background="#ff0",foreground= "#000", anchor= W).place(x=10,y=230,width=125,height=20)
     b = Label(app, text = pr,background="white",foreground= "#000", anchor= W).place(x=140,y=230,width=110,height=20)
     c = Label(app, text ="Atenuação no espaço livre (dB): ",background="#ff0",foreground= "#000", anchor= W).place(x=10,y=260,width=170,height=20)
     d = Label(app, text = lb,background="white",foreground= "#000", anchor= W).place(x=185,y=260,width=110,height=20)
+    """
+    r = requests.get(url + "&size=250x250&center="+str(center2)+
+                        "&zoom="+str(zoom)+"&maptype=satellite&key="+api_key)
+    print(url + "&size=250x250&center="+str(center2)+
+                        "&zoom="+str(zoom)+"&maptype=satellite&key="+api_key)
+    
+    
+    f = open('F:/Users/SAMUEL/Documents/MeusProjetos/5G/Python Files/II.gif', 'wb')
+    
+    pastaApp=os.path.dirname(__file__)
+    imgLogo1 = PhotoImage(file=pastaApp+"\\II.gif")
+    l_logo1=Label(app,image=imgLogo1)
+    l_logo1.place(x=900,y=400)
+    
+    f.write(r.content)
+    f.close()
+    """
+
+    
+    
     
  
 def calculo_potencia_ponto_referencia(da,do,ppr):
@@ -193,22 +179,12 @@ def calculo_potencia_ponto_referencia(da,do,ppr):
     #da = Distância almejada
     #do = Distânica do ponto de referência
     #ppr = Potência no ponto de referência 
-
-"""  
-def on_submit(lam, pt, gt, gr,d):
-        #To be run when the user submits the form
-    lam = lam_var.get()
-    pt = pt_var.get()
-    gt = gt_var.get()
-    gr = gr_var.get()
-"""   
     
-   # NameError: name 'pr' is not defined
+    a = Label(app, text ="Potência recebida no sinal de referência(W): ",background="#ff0",foreground= "#000", anchor= W).place(x=10,y=450,width=240,height=20)
+    b = Label(app, text = pr ,background="white",foreground= "#000", anchor= W).place(x=255,y=450,width=110,height=20)
+    c = Label(app, text ="Medida convertida para (dB): ",background="#ff0",foreground= "#000", anchor= W).place(x=10,y=480,width=160,height=20)
+    d = Label(app, text = lb ,background="white",foreground= "#000", anchor= W).place(x=175,y=480,width=110,height=20)
 
-    
-   # print("Sua Localização é: %s" %geocode_result))
-   
-#def bt_onclick():
       
 """
 vtxt="Opções"
@@ -240,7 +216,7 @@ def abrir_tabelas():
     nova_janela.title("Tabela fator de atenuação")
     nova_janela.geometry("800x600")
     #pastaApp=os.path.dirname(__file__)
-    #photo= PhotoImage(file=pastaApp+"\\teabla.png")
+    #photo= PhotoImage(file=pastaApp+"\\tabela.png")
     #photo = PhotoImage(file = "tabela.png" )
     #img = Image.open("tabela.png")
     #label = Label(nova_janela, image = img)
@@ -325,13 +301,12 @@ ppr.place(x=240,y=420,width=110,height=20)
 bt = Button(app, text= "OK", command=lambda:[impdados(lam, pt, gt, gr ,d,lugar, nomeArquivo)])
 bt.place(x =10, y =290, width=110, height=20)
 bt1= Button(app, text= "OK", command =lambda:[calculo_potencia_ponto_referencia(da,do,ppr)])
-bt1.place(x =240, y =450, width=110, height=20)
-#bt2 = Button(app, text= "OK", command=lambda:[impdados(lam, pt, gt, gr ,d,lugar, nomeArquivo)])
-#bt2.place(x =10, y =290, width=110, height=20)
+bt1.place(x =10, y =510, width=110, height=20)
 Button(app, text= "Sair",  command= sair).place(x=130,y=290,width=110,height=20)
+bt3 = Button(app, text= "Mapa", command=lambda:[mapa(lugar,center2)])
+bt3.place(x =300, y =290, width=110, height=20)
 
-#print("Valor de x",x)
-
+"""
 #Exibição do Mapa:
 pastaApp=os.path.dirname(__file__)
 imgLogo1 = PhotoImage(file=pastaApp+"\\II.gif")
@@ -339,14 +314,14 @@ l_logo1=Label(app,image=imgLogo1)
 l_logo1.place(x=900,y=400)
 
 
-center = 'Brasil'    #str(lugar2)
-zoom = 3
+
 
 # get method of requests module
 # return response object
-r = requests.get(url + "&size=250x250&center="+str(center)+
+r = requests.get(url + "&size=250x250&center="+str(center2)+
                         "&zoom="+str(zoom)+"&maptype=satellite&key="+api_key)
-print(url + "&size=250x250&center="+str(center)+
+print(center2)
+print(url + "&size=250x250&center="+str(center2)+
                         "&zoom="+str(zoom)+"&maptype=satellite&key="+api_key)
 #https://maps.googleapis.com/maps/api/staticmap?&size=400x400&center=Tokyo&zoom=10&maptype=satellite&key=AIzaSyDcz_OKnoD8j0n-a_3AyipLXOb6ZyqFI-0
 # wb mode is stand for write binary mode
@@ -360,7 +335,32 @@ f.write(r.content)
 # save and close the file
 f.close()
 
+"""
+pastaApp=os.path.dirname(__file__)
+imgLogo1 = PhotoImage(file=pastaApp+"\\II.gif")
+l_logo1=Label(app,image=imgLogo1)
+l_logo1.place(x=900,y=400)
 
+def mapa(lugar,center2):
+    api_key = "AIzaSyDcz_OKnoD8j0n-a_3AyipLXOb6ZyqFI-0"
+    url = "https://maps.googleapis.com/maps/api/staticmap?"
+    zoom = 19  
+    center2 = str(lugar.get())
+    print(lugar.get())
+    print(center2)
+    
+    r = requests.get(url + "&size=250x250&center="+str(center2)+
+                        "&zoom="+str(zoom)+"&maptype=satellite&key="+api_key)
+    print(url + "&size=250x250&center="+str(center2)+
+                        "&zoom="+str(zoom)+"&maptype=satellite&key="+api_key)
+    f = open('F:/Users/SAMUEL/Documents/MeusProjetos/5G/Python Files/II.gif', 'wb')
+    f.write(r.content)
+    f.close()
+    
+    pastaApp=os.path.dirname(__file__)
+    imgLogo1 = PhotoImage(file=pastaApp+"\\II.gif")
+    l_logo1=Label(app,image=imgLogo1)
+    l_logo1.place(x=900,y=400)
 
 app.mainloop()
 
@@ -368,9 +368,3 @@ app.mainloop()
 
 # center defines the center of the map,
 # equidistant from all edges of the map. 
-
-
-
-
-
-
