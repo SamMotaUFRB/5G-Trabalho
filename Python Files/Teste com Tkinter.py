@@ -11,10 +11,10 @@ from math import pi, log10
 
 
 #Configurações Visuais:
-app = Tk()
+app =Tk()
 app.title("APP 5G")
 app.iconbitmap('F:/Users/SAMUEL/Documents/MeusProjetos/5G/Python Files/radio-tower.ico')
-app.geometry("600x600")
+app.geometry("1280x680")
 app.configure(background="#118")
 lam2 =0
 pt2=0
@@ -25,8 +25,12 @@ d2=0
 pr2=0
 pr=0
 a= 0
+ppr2 = 0
+da2= 0
+do2= 0
 center2=0
 lugar2=0
+beta = 2
 
               
               
@@ -79,6 +83,8 @@ geocode_result = googlemaps.geocode(lugar)
 txt1 = Label(app, text = "Bem-vindo a interface", background="#ff0", foreground= "#000")
 #txt1.grid(row= 5, column= 5) # Colocando o objeto por linhas e colunas.
 txt1.place(x=10,y=10,width=150, height=30) #Colocando o objeto por coodernadas
+txt2 = Label(app, text = "Calculo da pontência recebida em um ponto de referência:", background="#ff0", foreground= "#000").place(x=10,y=320,width=320, height=30)
+
 #txt2 = Label(app, text = data, background="#ff0", foreground= "#000" )
 #txt2.place(x=160,y=10,width=150, height=30)
 
@@ -168,7 +174,25 @@ def impdados(lam, pt, gt, gr,d ,lugar, nomeArquivo):
     c = Label(app, text ="Atenuação no espaço livre (dB): ",background="#ff0",foreground= "#000", anchor= W).place(x=10,y=260,width=170,height=20)
     d = Label(app, text = lb,background="white",foreground= "#000", anchor= W).place(x=185,y=260,width=110,height=20)
     
+ 
+def calculo_potencia_ponto_referencia(da,do,ppr):
+    print("Horário: ", data)
+    print(f"Distância almejada: {da.get()} m")
+    print(f"Distância do ponto de referência:   {do.get()} m" )
+    print(f"Potência no ponto de referência:  {ppr.get()} W")
+    da2 = float(da.get())
+    do2 = float(do.get())
+    ppr2 = float(ppr.get())
     
+    pr = (ppr2*pow(do2,beta))/(pow(da2,beta)) #Pontência recebida em um ponto de referencia
+    print("A potência do sinal recebido no ponto de referência é: ", pr, "W")
+    d1 = da2/do2
+    lb = -10*beta*log10(d1) #Convertidas em dB
+    print("Medida convertida para dB:", lb, "dB")
+    
+    #da = Distância almejada
+    #do = Distânica do ponto de referência
+    #ppr = Potência no ponto de referência 
 
 """  
 def on_submit(lam, pt, gt, gr,d):
@@ -209,7 +233,30 @@ def salvardados():
 
 def semComando():
     print(" ")
+   
+"""
+def abrir_tabelas():
+    nova_janela = tk.Toplevel()
+    nova_janela.title("Tabela fator de atenuação")
+    nova_janela.geometry("800x600")
+    #pastaApp=os.path.dirname(__file__)
+    #photo= PhotoImage(file=pastaApp+"\\teabla.png")
+    #photo = PhotoImage(file = "tabela.png" )
+    #img = Image.open("tabela.png")
+    #label = Label(nova_janela, image = img)
+    #label.pack()
+    #img.show()
     
+ """   
+"""    
+def modelo_espaco_livre():
+    nova_janela1 = tk.Toplevel(app)
+    nova_janela1.title("Tabela fator de atenuação")
+    nova_janela1.geometry("800x600")
+    label = tk.label(nova_janela1, text = "Calculo")
+    label.pack(pady=20)
+    
+"""
 
 #Criando Barra de Menus.
 
@@ -222,6 +269,8 @@ menuprincipal.add_command(label  = "Fechar",command=app.quit)
 barrademenus.add_cascade(label = "Início", menu= menuprincipal)
 
 menusobre = Menu(barrademenus, tearoff = 0)
+#menusobre.add_command(label = "Tabelas", command = abrir_tabelas)
+menusobre.add_separator()
 menusobre.add_command(label = "Sobre", command = semComando)
 barrademenus.add_cascade(label = "Informações", menu= menusobre)
 app.config(menu=barrademenus)
@@ -257,12 +306,28 @@ Label(app, text="Digite sua localização: ",background="#ff0",foreground= "#000
 lugar = Entry(app)
 lugar.place(x=135,y=200,width=110,height=20)
 
+# Para o calculo da pontência recebida em um ponto de referencia:
 
+Label(app, text="Digite o distância almejada (em m):  ",background="#ff0",foreground= "#000", anchor= W).place(x=10,y=360,width=150,height=20)
+da = Entry(app)
+da.place(x=165,y=360,width=110,height=20)
 
+Label(app, text="Digite o distância do ponto de referência (em m):  ",background="#ff0",foreground= "#000", anchor= W).place(x=10,y=390,width=225,height=20)
+do = Entry(app)       
+do.place(x=240,y=390,width=110,height=20)
+
+Label(app, text="Digite a potência no ponto de referência (em Watts):  ",background="#ff0",foreground= "#000", anchor= W).place(x=10,y=420,width=225,height=20)
+ppr = Entry(app)
+ppr.place(x=240,y=420,width=110,height=20)
+             
 
 #Botões:
 bt = Button(app, text= "OK", command=lambda:[impdados(lam, pt, gt, gr ,d,lugar, nomeArquivo)])
 bt.place(x =10, y =290, width=110, height=20)
+bt1= Button(app, text= "OK", command =lambda:[calculo_potencia_ponto_referencia(da,do,ppr)])
+bt1.place(x =240, y =450, width=110, height=20)
+#bt2 = Button(app, text= "OK", command=lambda:[impdados(lam, pt, gt, gr ,d,lugar, nomeArquivo)])
+#bt2.place(x =10, y =290, width=110, height=20)
 Button(app, text= "Sair",  command= sair).place(x=130,y=290,width=110,height=20)
 
 #print("Valor de x",x)
@@ -271,7 +336,7 @@ Button(app, text= "Sair",  command= sair).place(x=130,y=290,width=110,height=20)
 pastaApp=os.path.dirname(__file__)
 imgLogo1 = PhotoImage(file=pastaApp+"\\II.gif")
 l_logo1=Label(app,image=imgLogo1)
-l_logo1.place(x=10,y=320)
+l_logo1.place(x=900,y=400)
 
 
 center = 'Brasil'    #str(lugar2)
