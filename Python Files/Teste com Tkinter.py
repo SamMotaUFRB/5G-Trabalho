@@ -6,6 +6,8 @@ from PIL import *
 import googlemaps
 import requests
 from math import pi, log10
+import PIL
+
 #from webbrowser import *
 #from requests import *
 
@@ -303,8 +305,15 @@ bt.place(x =10, y =290, width=110, height=20)
 bt1= Button(app, text= "OK", command =lambda:[calculo_potencia_ponto_referencia(da,do,ppr)])
 bt1.place(x =10, y =510, width=110, height=20)
 Button(app, text= "Sair",  command= sair).place(x=130,y=290,width=110,height=20)
-bt3 = Button(app, text= "Mapa", command=lambda:[mapa(lugar,center2)])
+bt3 = Button(app, text= "Mapa", command=lambda:[mapa(lugar,center2,r,f,imgLogo1,l_logo1, pastaApp)])
 bt3.place(x =300, y =290, width=110, height=20)
+
+
+global r
+global f
+global imgLogo1
+global l_logo1
+
 
 """
 #Exibição do Mapa:
@@ -336,12 +345,9 @@ f.write(r.content)
 f.close()
 
 """
-pastaApp=os.path.dirname(__file__)
-imgLogo1 = PhotoImage(file=pastaApp+"\\II.gif")
-l_logo1=Label(app,image=imgLogo1)
-l_logo1.place(x=900,y=400)
 
-def mapa(lugar,center2):
+
+def mapa(lugar,center2,r,f,imgLogo1,l_logo1,pastaApp):
     api_key = "AIzaSyDcz_OKnoD8j0n-a_3AyipLXOb6ZyqFI-0"
     url = "https://maps.googleapis.com/maps/api/staticmap?"
     zoom = 19  
@@ -353,16 +359,46 @@ def mapa(lugar,center2):
                         "&zoom="+str(zoom)+"&maptype=satellite&key="+api_key)
     print(url + "&size=250x250&center="+str(center2)+
                         "&zoom="+str(zoom)+"&maptype=satellite&key="+api_key)
-    f = open('F:/Users/SAMUEL/Documents/MeusProjetos/5G/Python Files/II.gif', 'wb')
+    f = open('F:/Users/SAMUEL/Documents/MeusProjetos/5G/Python Files/II.png', 'wb')
     f.write(r.content)
     f.close()
-    
+    """
     pastaApp=os.path.dirname(__file__)
-    imgLogo1 = PhotoImage(file=pastaApp+"\\II.gif")
+    imgLogo1 = PhotoImage(file=pastaApp+"\\II.png")
     l_logo1=Label(app,image=imgLogo1)
-    l_logo1.place(x=900,y=400)
+    l_logo1.place(x=900,y=200)
+    """
+    
+    """
+    img = Image.open("II.gif")
+    img = img.resize((250, 250), Image.ANTIALIAS)
+    img = ImageTk.PhotoImage(img)
+
+    label = Label(app, image=img)
+    label.pack()
+    """
+    
+    """
+    canvas = Canvas(app, width=250, height=250)
+    canvas.pack()
+
+    img = Image.open("II.gif")
+    img = img.resize((250, 250), Image.ANTIALIAS)
+    img = ImageTk.PhotoImage(img)
+
+    canvas.create_image(0, 0, anchor=NW, image=img)
+    """
+    text = Text(app)
+    text.pack()
+
+    img = Image.open("II.png")
+    img = img.resize((200, 200), Image.ANTIALIAS)
+    img = ImageTk.PhotoImage(img)
+
+    text.image_create(END, image=img)
 
 app.mainloop()
+
 
 
 
