@@ -33,6 +33,14 @@ do2= 0
 center2=0
 lugar2= 0
 beta = 2
+global r
+global f
+global imgLogo1
+global l_logo1
+r = 0
+f = 0
+imgLogo1 = 0
+l_logo1 = 0
 
 #center2 = 'Arena Fonte Nova'    #str(lugar2)
 #center2 = str(lugar2)
@@ -303,7 +311,7 @@ zoom = 0
 
 zoom = Scale(app,from_=10, to=20, orient = HORIZONTAL) 
 zoom.set(13)
-zoom.pack()
+zoom.place(x = 420 , y = 268)
 print(str(zoom.get()))
              
 
@@ -317,16 +325,7 @@ bt3 = Button(app, text= "Mapa", command=lambda:[mapa(lugar,center2,r,f,imgLogo1,
 bt3.place(x =300, y =290, width=110, height=20)
 
 
-global r
-global f
-global imgLogo1
-global l_logo1
 
-
-r = 0
-f = 0
-imgLogo1 = 0
-l_logo1 = 0
 
 """
 #Exibição do Mapa:
