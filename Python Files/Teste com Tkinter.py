@@ -297,6 +297,14 @@ do.place(x=240,y=390,width=110,height=20)
 Label(app, text="Digite a potência no ponto de referência (em Watts):  ",background="#ff0",foreground= "#000", anchor= W).place(x=10,y=420,width=225,height=20)
 ppr = Entry(app)
 ppr.place(x=240,y=420,width=110,height=20)
+
+zoom2 = 0
+zoom = 0
+
+zoom = Scale(app,from_=10, to=20, orient = HORIZONTAL) 
+zoom.set(13)
+zoom.pack()
+print(str(zoom.get()))
              
 
 #Botões:
@@ -314,6 +322,11 @@ global f
 global imgLogo1
 global l_logo1
 
+
+r = 0
+f = 0
+imgLogo1 = 0
+l_logo1 = 0
 
 """
 #Exibição do Mapa:
@@ -350,34 +363,35 @@ f.close()
 def mapa(lugar,center2,r,f,imgLogo1,l_logo1,pastaApp):
     api_key = "AIzaSyDcz_OKnoD8j0n-a_3AyipLXOb6ZyqFI-0"
     url = "https://maps.googleapis.com/maps/api/staticmap?"
-    zoom = 19  
+    zoom2= str(zoom.get())
+    print(zoom2)
     center2 = str(lugar.get())
     print(lugar.get())
     print(center2)
     
     r = requests.get(url + "&size=250x250&center="+str(center2)+
-                        "&zoom="+str(zoom)+"&maptype=satellite&key="+api_key)
+                        "&zoom="+str(zoom2)+"&maptype=satellite&key="+api_key)
     print(url + "&size=250x250&center="+str(center2)+
-                        "&zoom="+str(zoom)+"&maptype=satellite&key="+api_key)
+                        "&zoom="+str(zoom2)+"&maptype=satellite&key="+api_key)
     f = open('F:/Users/SAMUEL/Documents/MeusProjetos/5G/Python Files/II.png', 'wb')
     f.write(r.content)
     f.close()
-    """
+    
     pastaApp=os.path.dirname(__file__)
     imgLogo1 = PhotoImage(file=pastaApp+"\\II.png")
     l_logo1=Label(app,image=imgLogo1)
     l_logo1.place(x=900,y=200)
-    """
     
     """
+    
     img = Image.open("II.gif")
     img = img.resize((250, 250), Image.ANTIALIAS)
     img = ImageTk.PhotoImage(img)
 
     label = Label(app, image=img)
     label.pack()
-    """
     
+    """
     """
     canvas = Canvas(app, width=250, height=250)
     canvas.pack()
@@ -388,6 +402,7 @@ def mapa(lugar,center2,r,f,imgLogo1,l_logo1,pastaApp):
 
     canvas.create_image(0, 0, anchor=NW, image=img)
     """
+    
     text = Text(app)
     text.pack()
 
@@ -396,7 +411,8 @@ def mapa(lugar,center2,r,f,imgLogo1,l_logo1,pastaApp):
     img = ImageTk.PhotoImage(img)
 
     text.image_create(END, image=img)
-
+    
+    
 app.mainloop()
 
 
